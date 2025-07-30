@@ -1,10 +1,16 @@
-import { Header } from "@/components"
+//COMPONENTS
+import { CardComponent, Header } from "@/components"
+
+//MUI
+import { Container } from "@mui/system"
 
 const Home = () => {
   return (
     <>
     <Header/>
-    <h1>ola munfo</h1>
+    <Container maxWidth='lg'>
+      <CardComponent>Card</CardComponent>
+    </Container>
     </>
   )
 }
