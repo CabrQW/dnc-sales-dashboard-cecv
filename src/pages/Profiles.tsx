@@ -1,6 +1,9 @@
-const Profiles = () => {
+import { Header } from '@/components'
+
+function Profiles() {
   return (
     <>
+      <Header />
       <h1>ola munfo</h1>
     </>
   )
