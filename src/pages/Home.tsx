@@ -24,7 +24,7 @@ function Home() {
 
   // SALES PER MONTH
   const {
-    data: salesmonData,
+    data: salesMonData,
     loading: salesMonthLoading,
     error: salesMonthError,
   } = useGet<CustomChartProps>('sales/month')
@@ -53,7 +53,7 @@ function Home() {
   return (
     <>
       <Header />
-      <Container className='mb-2' maxWidth="lg">
+      <Container className="mb-2" maxWidth="lg">
         <Grid container spacing={4}>
           {!highlightsError && (
             <>
@@ -136,13 +136,13 @@ function Home() {
                     : ''
                 }
               >
-                {!salesMonthLoading && salesYearData && (
+                {!salesMonthLoading && salesMonData && (
                   <>
                     <StyledH2 className="mb-1">Valor de vendas do mês</StyledH2>
                     <CustomChart
-                      labels={salesYearData.labels.map((label) => label)}
-                      data={salesYearData.data.map((data) => data)}
-                      type={salesYearData.type}
+                      labels={salesMonData.labels.map((label) => label)}
+                      data={salesMonData.data.map((data) => data)}
+                      type={salesMonData.type}
                     />
                   </>
                 )}
@@ -216,7 +216,9 @@ function Home() {
               >
                 {!salesYearLoading && salesYearData && (
                   <>
-                    <StyledH2 className="mb-1">Valor de vendas por mês</StyledH2>
+                    <StyledH2 className="mb-1">
+                      Valor de vendas por mês
+                    </StyledH2>
                     <CustomChart
                       labels={salesYearData.labels.map((label) => label)}
                       data={salesYearData.data.map((data) => data)}
