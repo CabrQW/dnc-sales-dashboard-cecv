@@ -1,18 +1,33 @@
+import { Link } from 'react-router-dom'
+
 //COMPONENTS
-import { AvatarsList, CustomTable, CardComponent, CustomChart , Header, StyledH2, StyledH3, StyledSpan } from "@/components" 
+import {
+  AvatarsList,
+  CustomTable,
+  CardComponent,
+  CustomChart,
+  Header,
+  StyledH2,
+  StyledH3,
+  StyledSpan,
+} from '@/components'
 
 //HOOKS
-import { useGet  } from "@/hooks"
+import { useGet } from '@/hooks'
 
 //MUI
-import { Container, Grid } from "@mui/system"
+import { Container, Grid } from '@mui/system'
 
 //UTILS
-import { currencyConverter, highlightTextConverter } from "@/utils"
+import { currencyConverter, highlightTextConverter } from '@/utils'
 
 //TYPES
-import type { HighlightsData, StarsData, NewsData, CustomChartProps } from "@/types"
-
+import type {
+  HighlightsData,
+  StarsData,
+  NewsData,
+  CustomChartProps,
+} from '@/types'
 
 function Home() {
   // HIGHLIGHTS
@@ -115,13 +130,13 @@ function Home() {
                   }
                 >
                   {!highlightsLoading && highlightsData && (
-                    <>
+                    <Link to="/leads">
                       <StyledH2 className="mb-1">Leads contactados</StyledH2>
                       <StyledH3 className="mb-1" size={40} lineheight={40}>
                         {highlightsData[2].value}
                       </StyledH3>
                       <StyledSpan>{highlightsData[2].subtitle}</StyledSpan>
-                    </>
+                      </Link>
                   )}
                 </CardComponent>
               </Grid>
