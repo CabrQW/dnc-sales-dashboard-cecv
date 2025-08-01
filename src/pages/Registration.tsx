@@ -24,13 +24,12 @@ import { pxToRem } from '@/utils'
 import { useFormValidation, usePost } from '@/hooks'
 
 //REDUX
-import { useDispatch, useSelector, type UseDispatch, type UseSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import type { RootState } from '@/redux'
 import { setMessage, setProfileData } from '@/redux/slices/createProfile'
 
 //TYPES
 import type { CreateProfileData, InputProps } from '@/types'
-import Alert from '@mui/material/Alert'
 
 
 function Registration() {
