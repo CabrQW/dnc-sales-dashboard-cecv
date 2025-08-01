@@ -30,7 +30,7 @@ import type {
 } from '@/types'
 
 function Loads() {
-  //HOOKS
+//HOOKS
 
   const {
     data: createLeadsData,
