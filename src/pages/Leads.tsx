@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 
 import type { ChangeEvent } from 'react'
@@ -30,7 +31,7 @@ import type {
 } from '@/types'
 
 function Loads() {
-//HOOKS
+  //HOOKS
 
   const {
     data: createLeadsData,
@@ -69,7 +70,7 @@ function Loads() {
   const handleDelete = async (id: number) => {
     if (confirm('Tem certeza que deseja excluir sua Lead?')) {
       try {
-        await leadsDeleteData({params:{id: id}})
+        await leadsDeleteData({ params: { id: id } })
         alert('Lead deletado com sucesso!')
         getLeads()
       } catch (e) {
@@ -119,14 +120,14 @@ function Loads() {
           <Grid size={{ xs: 12, sm: 7 }}>
             <CardComponent
               className={
-                leadsLoading
-                  ? 'skeleton-loading skeleton-leading-mh-2'
-                  : ''
+                leadsLoading ? 'skeleton-loading skeleton-leading-mh-2' : ''
               }
             >
               {!leadsError && !leadsLoading && (
                 <>
-                  <StyledH2 className="mb-1" id='leads-title'>Meus Leads</StyledH2>
+                  <StyledH2 className="mb-1" id="leads-title">
+                    Meus Leads
+                  </StyledH2>
                   {leadsData?.length ? (
                     <CustomTable
                       headers={['Name', 'Email', 'Telefone']}

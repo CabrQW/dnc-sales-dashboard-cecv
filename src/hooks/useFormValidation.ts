@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import type { InputProps } from '@/types'
 
 export const useFormValidation = (inputs: InputProps[]) => {
-  const [formValues, setFormValues] = useState(inputs.map((input) => input.value || ''))
+  const [formValues, setFormValues] = useState(
+    inputs.map((input) => input.value || '')
+  )
   const [formValid, setFormValid] = useState(false)
 
   useEffect(() => {

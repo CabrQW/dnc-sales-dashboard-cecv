@@ -1,11 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { type ChangeEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
 import Cookies from 'js-cookie'
 
-
 //COMPONENTS
-import { BannerImage, FormComponent,Logo, StyledH1, StyledP  } from '@/components'
+import {
+  BannerImage,
+  FormComponent,
+  Logo,
+  StyledH1,
+  StyledP,
+} from '@/components'
 
 // MUI
 import Box from '@mui/material/Box'
@@ -19,44 +25,52 @@ import { useFormValidation, usePost } from '@/hooks'
 import { pxToRem, jwtExpirationDateConverter } from '@/utils'
 
 //TYPES
-import type { DecodedJWT, MessageProps, LoginData, LoginPostData } from '@/types'
- 
+import type {
+  DecodedJWT,
+  MessageProps,
+  LoginData,
+  LoginPostData,
+} from '@/types'
+
 // REDUX
 import { useSelector } from 'react-redux'
 import type { RootState } from '@/redux'
 
-function Login(){
+function Login() {
   const navigate = useNavigate()
-  const { email, message } = useSelector((state: RootState) => state.createProfile)
+  const { email, message } = useSelector(
+    (state: RootState) => state.createProfile
+  )
   const inputs = [
-    { type:'email', placeholder: 'Email'},
-    { type:'password', placeholder: 'Senha'}
+    { type: 'email', placeholder: 'Email' },
+    { type: 'password', placeholder: 'Senha' },
   ]
-  const {data, loading, error, postData } = usePost<LoginData, LoginPostData>('login')
-  const {formValues, formValid, handleChange} = useFormValidation(inputs)
+  const { data, loading, error, postData } = usePost<LoginData, LoginPostData>(
+    'login'
+  )
+  const { formValues, formValid, handleChange } = useFormValidation(inputs)
 
-  const handlenMessage = ():MessageProps => {
-    if(!error) return {msg: message ?? '', type: 'success'}
-    switch(error) {
+  const handlenMessage = (): MessageProps => {
+    if (!error) return { msg: message ?? '', type: 'success' }
+    switch (error) {
       case 401:
         return {
-          msg:"Email e/ou senha inválidos",
-          type: "error",
+          msg: 'Email e/ou senha inválidos',
+          type: 'error',
         }
-        default:
-          return{
-            msg: "Não foi possivel realizar a operacão. Entre em contato com nosso suporte.",
-            type: "error",
-          }
+      default:
+        return {
+          msg: 'Não foi possivel realizar a operacão. Entre em contato com nosso suporte.',
+          type: 'error',
+        }
     }
   }
-
 
   const handlenSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     await postData({
       email: String(formValues[0]),
-      password: String(formValues[1])
+      password: String(formValues[1]),
     })
   }
 
@@ -65,21 +79,18 @@ function Login(){
       const decoded: DecodedJWT = jwtDecode(data?.jwt_token)
       Cookies.set('Authorization', data?.jwt_token, {
         expires: jwtExpirationDateConverter(decoded.exp),
-        secure:true,
+        secure: true,
       })
       if (Cookies.get('Authorization')) navigate('/home')
     }
     if (Cookies.get('Authorization')) navigate('/home')
   }, [data, navigate])
 
-
-
   useEffect(() => {
-    if(email) {
+    if (email) {
       handleChange(0, email)
     }
   }, [email])
-
 
   return (
     <>

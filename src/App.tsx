@@ -1,5 +1,11 @@
-import { BrowserRouter as Router, Route, Routes, Navigate, Outlet } from 'react-router-dom'
-import { Home, Leads, Login,Profiles, Registration } from './pages'
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+  Outlet,
+} from 'react-router-dom'
+import { Home, Leads, Login, Profiles, Registration } from './pages'
 import Cookies from 'js-cookie'
 
 function App() {

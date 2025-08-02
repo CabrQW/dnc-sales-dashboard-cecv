@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState, useEffect } from 'react'
 import axios, { type AxiosRequestConfig } from 'axios'
@@ -9,7 +10,7 @@ const axiosInstance = axios.create({
 
 //USEPOST
 
-export const usePost = <T, P>(endpoint: string, withAuth?:boolean) => {
+export const usePost = <T, P>(endpoint: string, withAuth?: boolean) => {
   const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<number | null>(null)
@@ -122,7 +123,7 @@ export const usePut = <T>(endpoint: string) => {
 
 //DELETE
 
-export const  useDelete = <T>(endpoint: string) => {
+export const useDelete = <T>(endpoint: string) => {
   const [data, setData] = useState<T | null>(null)
   const [loading, setLoading] = useState(false)
 
