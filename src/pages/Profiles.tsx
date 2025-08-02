@@ -134,6 +134,7 @@ function Profiles() {
                         {
                           className: 'primary',
                           disabled: !formValid || profileUpdateLoading,
+                          id: 'update-profile',
                           type: 'submit',
                           onClick: handleSubmit,
                           children: profileUpdateLoading
@@ -144,6 +145,7 @@ function Profiles() {
                         {
                           className: 'alert',
                           disabled: profileDeleteLoading,
+                          id: 'delete-profile',
                           type: 'button',
                           onClick: handleDelete,
                           children: profileDeleteLoading ? 'Aguarde...' : 'Excluir minha conta',
@@ -161,12 +163,13 @@ function Profiles() {
               <StyledH2 className="mb-1">Definições de conta</StyledH2>
               <StyledButton
                 className="primary mb-1"
+                id='theme-switch'
                 onClick={themeConstext?.toggleTheme}
               >
                 troca de tema{' '}
                 {themeConstext?.appTheme === 'light' ? 'escuro' : 'claro'}
               </StyledButton>
-              <StyledButton className="alert" onClick={logout}>
+              <StyledButton className="alert" id='logout' onClick={logout}>
                 Logout
               </StyledButton>
             </CardComponent>
