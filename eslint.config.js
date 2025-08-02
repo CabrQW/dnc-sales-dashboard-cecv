@@ -15,6 +15,7 @@ export default tseslint.config([
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
       'eslint-config-prettier',
+      'plugin:cypress/recommend',
     ],
     languageOptions: {
       ecmaVersion: 2020,
