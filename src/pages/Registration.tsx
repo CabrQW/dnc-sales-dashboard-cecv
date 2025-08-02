@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, type ChangeEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -10,7 +11,6 @@ import {
   StyledP,
   StyledUl,
 } from '@/components'
-
 
 // MUI
 import Box from '@mui/material/Box'
@@ -31,25 +31,21 @@ import { setMessage, setProfileData } from '@/redux/slices/createProfile'
 //TYPES
 import type { CreateProfileData, InputProps } from '@/types'
 
-
 function Registration() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { email } = useSelector((state: RootState) => state.createProfile)
 
   //HOOKS
-  
-    const {
-      data,
-      loading,
-      error,
-      postData,
-    } = usePost<string, CreateProfileData>('profile/create')
+
+  const { data, loading, error, postData } = usePost<string, CreateProfileData>(
+    'profile/create'
+  )
 
   //FORM STEP1
   const step1inputs: InputProps[] = [
     { name: 'name', type: 'text', placeholder: 'Nome', required: true },
-    { name: 'email', type: 'email', placeholder: 'Email', },
+    { name: 'email', type: 'email', placeholder: 'Email' },
     { name: 'phone', type: 'tel', placeholder: 'Telefone', required: true },
   ]
 
@@ -85,16 +81,18 @@ function Registration() {
     handleChange: step2FormHandleChange,
   } = useFormValidation(step2Inputs)
 
-    const handleStepInputs = email ? step2Inputs : step1inputs
+  const handleStepInputs = email ? step2Inputs : step1inputs
 
-    useEffect(() =>{
-      if (data !== null){
-        dispatch(setMessage('Usuário criado com sucesso'))
-        navigate('/')
-      } else if (error) {
-          alert(`Não foi possível realizar a operação. Entre em contato com nosso suporte(${error}).`)
-      }
-    }, [data,error, navigate])
+  useEffect(() => {
+    if (data !== null) {
+      dispatch(setMessage('Usuário criado com sucesso'))
+      navigate('/')
+    } else if (error) {
+      alert(
+        `Não foi possível realizar a operação. Entre em contato com nosso suporte(${error}).`
+      )
+    }
+  }, [data, error, navigate])
 
   return (
     <>
@@ -145,12 +143,14 @@ function Registration() {
                         ),
                 }))}
                 buttons={[
-                  { 
-                    className: 'primary', 
-                    disabled: email ? !step2FormValid || loading : !step1FormformValid,
+                  {
+                    className: 'primary',
+                    disabled: email
+                      ? !step2FormValid || loading
+                      : !step1FormformValid,
                     onClick: email ? handleStep2 : handleStep1,
-                    type: 'submit', 
-                    children: email ? 'Enviar' : 'Proximo'
+                    type: 'submit',
+                    children: email ? 'Enviar' : 'Proximo',
                   },
                 ]}
               />

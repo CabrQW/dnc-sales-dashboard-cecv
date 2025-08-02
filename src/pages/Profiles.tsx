@@ -1,8 +1,16 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useContext, useEffect, useState, type ChangeEvent } from 'react'
 import Cookies from 'js-cookie'
 
 //COMPONENTS
-import { Header, CardComponent, StyledButton, StyledH2, FormComponent } from '@/components'
+import {
+  Header,
+  CardComponent,
+  StyledButton,
+  StyledH2,
+  FormComponent,
+} from '@/components'
 
 //CONTEXTS
 import { AppThemeContext } from '@/contexts/AppThemeContext'
@@ -17,15 +25,20 @@ import { Container, Grid } from '@mui/system'
 import { logout } from '@/services'
 
 //TYPES
-import type { InputProps, ProfileData, ProfileEditableData, MessageProps } from '@/types'
+import type {
+  InputProps,
+  ProfileData,
+  ProfileEditableData,
+  MessageProps,
+} from '@/types'
 
 function Profiles() {
   const themeConstext = useContext(AppThemeContext)
 
   // HOOKS
   const [updateMessage, setUpdateMessage] = useState<MessageProps>({
-     type:  'success',
-     msg: ''
+    type: 'success',
+    msg: '',
   })
   const clearMessage = () => {
     setTimeout(() => {
@@ -48,7 +61,8 @@ function Profiles() {
     error: profileUpdateError,
   } = usePut<ProfileEditableData>('profile/update')
 
-  const { deleteData: profileDeleteData, loading: profileDeleteLoading } = useDelete('profile/update')
+  const { deleteData: profileDeleteData, loading: profileDeleteLoading } =
+    useDelete('profile/update')
 
   useEffect(() => {
     if (profileData) {
@@ -67,23 +81,27 @@ function Profiles() {
   const { formValues, formValid, handleChange } = useFormValidation(inputs)
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    await profilePutData(
-      {
-        name: String(formValues[0]),
-        phone: String(formValues[2])
-      }
-    )
+    await profilePutData({
+      name: String(formValues[0]),
+      phone: String(formValues[2]),
+    })
   }
 
   const handleDelete = async () => {
-    if (confirm('Tem certeza que deseja excluir sua conta? Se sim, certifique-se de deletar seus leads antes.')) {
+    if (
+      confirm(
+        'Tem certeza que deseja excluir sua conta? Se sim, certifique-se de deletar seus leads antes.'
+      )
+    ) {
       try {
         await profileDeleteData()
-        alert ('Perfil deletado com sucesso!')
-         Cookies.remove('Authorization')
-         window.location.href = '/'
+        alert('Perfil deletado com sucesso!')
+        Cookies.remove('Authorization')
+        window.location.href = '/'
       } catch (e) {
-        alert ('Não foi possivel realizar a operação. Entre em contato com suporte.')
+        alert(
+          'Não foi possivel realizar a operação. Entre em contato com suporte.'
+        )
       }
     }
   }
@@ -148,7 +166,9 @@ function Profiles() {
                           id: 'delete-profile',
                           type: 'button',
                           onClick: handleDelete,
-                          children: profileDeleteLoading ? 'Aguarde...' : 'Excluir minha conta',
+                          children: profileDeleteLoading
+                            ? 'Aguarde...'
+                            : 'Excluir minha conta',
                         },
                       ]}
                       message={updateMessage}
@@ -163,13 +183,13 @@ function Profiles() {
               <StyledH2 className="mb-1">Definições de conta</StyledH2>
               <StyledButton
                 className="primary mb-1"
-                id='theme-switch'
+                id="theme-switch"
                 onClick={themeConstext?.toggleTheme}
               >
                 troca de tema{' '}
                 {themeConstext?.appTheme === 'light' ? 'escuro' : 'claro'}
               </StyledButton>
-              <StyledButton className="alert" id='logout' onClick={logout}>
+              <StyledButton className="alert" id="logout" onClick={logout}>
                 Logout
               </StyledButton>
             </CardComponent>

@@ -3,6 +3,8 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
+import prettier from 'eslint-config-prettier'
+import cypress from 'eslint-plugin-cypress'
 import { globalIgnores } from 'eslint/config'
 
 export default tseslint.config([
@@ -14,8 +16,8 @@ export default tseslint.config([
       tseslint.configs.recommended,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
-      'eslint-config-prettier',
-      'plugin:cypress/recommend',
+      prettier, // ← agora é um objeto importado
+      cypress.configs.recommended, // ← idem
     ],
     languageOptions: {
       ecmaVersion: 2020,
@@ -23,3 +25,4 @@ export default tseslint.config([
     },
   },
 ])
+
